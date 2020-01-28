@@ -1,0 +1,82 @@
+/*
+JOSEPH P. PASAOA
+Videopage Component Styling | YouTube Abbreviated | Unit 4 Assessment
+*/
+
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.ytvideo-box {
+  margin: 22px 3px;
+  height: 510px;
+  width: min-content;
+}
+
+.form-comments {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  width: 740px;
+  padding-bottom: 11px;
+  margin-bottom: 22px;
+  border-bottom: solid 2px #dc2c28;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  width: inherit;
+}
+
+.form-comments label {
+  position: relative;
+  top: 1px;
+
+  display: block;
+  margin: 0px 6px;
+  min-width: 80px;
+
+  text-align: left;
+}
+
+.form-comments input[type="text"] {
+  width: 300px;
+  margin-bottom: 11px;
+}
+
+.form-comments textarea {
+  margin-right: 6px;
+  width: 100%;
+}
+
+.btn-comment {
+  padding: 0px 16px 2px 16px;
+  margin: 6px 6px 3px 4px;
+}
+
+.form-comments .msg-error {
+  margin: 10px 11px 3px 20px;
+}
+
+.display-comments {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 40%;
+}

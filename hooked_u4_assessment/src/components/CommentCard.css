@@ -1,0 +1,25 @@
+/*
+JOSEPH P. PASAOA
+CommentCard Component Styling | YouTube Abbreviated | Unit 4 Assessment
+*/
+
+
+.card-comment-box {
+  width: 100%;
+  border: dotted 1px #bbb;
+  border-radius: 10px;
+  padding: 3px 11px;
+  margin: 3px 3px 22px 3px;
+  box-shadow: 0px 3px 3px #ccc;
+}
+
+h2 {
+  margin-top: 6px;
+  font-weight: bold;
+}
+
+.card-comment-body {
+  white-space: pre-line;
+  margin: 11px 0px 22px 11px;
+  color: #333;
+}

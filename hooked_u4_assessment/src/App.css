@@ -1,0 +1,89 @@
+/*
+JOSEPH P. PASAOA
+App MAIN Component Styling | YouTube Abbreviated | Unit 4 Assessment
+*/
+
+
+/* FONT INITS 
+font-family: 'Open Sans', sans-serif;
+font-family: 'Roboto', sans-serif;
+*/
+@font-face {
+  font-family: 'Open Sans', sans-serif;
+  src: url('./assets/fonts/Open_Sans/OpenSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Roboto', sans-serif;
+  src: url('./assets/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+.App {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 72px auto;
+
+  height: 100%;
+
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.85em;
+}
+
+.stage {
+  width: auto;
+  grid-row: 2;
+}
+
+h2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.3em;
+}
+
+.msg-error {
+  color: red;
+  font-weight: bold;
+  height: 13px;
+}
+
+input[type="text"] {
+  height: 1.2em;
+  border-radius: 3px;
+  margin-right: 6px;
+  padding: 3px;
+
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1em;
+}
+
+textarea {
+  border-width: 2px;
+  border-style: inset;
+  border-color: initial;
+  border-image: initial;
+
+  border-radius: 3px;
+  padding: 3px;
+
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1em;
+}
+
+button {
+  height: 2em;
+  border-radius: 13px;
+  padding: 0px 16px;
+  margin: 0px 6px 3px 6px;
+  box-shadow: 0px 3px 3px #ccc;
+
+  transition: background-color 0.1s;
+}
+
+button:active {
+  background-color: gold;
+}
