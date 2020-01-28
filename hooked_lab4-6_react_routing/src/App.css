@@ -1,0 +1,80 @@
+/*
+Joseph P. Pasaoa
+APP MAIN Component Page Styling | Joseph's Random Cat-Dog Image Fetcher
+*/
+
+
+/* FONT INITS
+@font-face {
+  font-family: 'Cabin';
+  src: url('./assets/fonts/Cabin/Cabin-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Maven Pro';
+  src: url('./assets/fonts/Maven_Pro/static/MavenPro-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+*/
+
+
+/* MAIN STYLE */
+.App {
+  display: grid;
+  grid-template-columns: 140px 220px auto;
+  grid-template-rows: 100%;
+}
+
+.intro {
+  width: 400px;
+  padding: 100px 14px 50px 28px;
+
+  line-height: 1.4em;
+}
+
+.stage {
+  position: relative;
+  width: auto;
+  height: auto;
+  overflow-y: scroll;
+
+  background-color: #222;
+  color: #ddd;
+  font-size: 2em;
+}
+
+.stage--addconsole {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+/* SAVED FROM PREVIOUS ITERATION - FLEX POSSIBILITY
+.viewer {
+  grid-row: span 2;
+
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex: 0 1 50%;
+  height: auto;
+
+  padding: 0 11px;
+  margin-top: 11px;
+} */
+
+.stage--grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 300px;
+}

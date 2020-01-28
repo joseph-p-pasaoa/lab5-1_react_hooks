@@ -1,0 +1,22 @@
+/*
+Joseph P. Pasaoa
+NotFound404 Page Component Styling | Joseph's Random Cat-Dog Image Fetcher
+*/
+
+
+.notfound {
+  padding: 200px 22px 44px 33px;
+}
+
+.notfound h1 {
+  color: midnightblue;
+  font-size: 3em;
+}
+
+.notfound h2 {
+  text-transform: uppercase;
+}
+
+.notfound p {
+  line-height: 1.4em;
+}

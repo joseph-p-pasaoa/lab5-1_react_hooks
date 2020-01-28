@@ -1,0 +1,26 @@
+/*
+Joseph P. Pasaoa
+Header Component Styling | Joseph's Random Cat-Dog Image Fetcher
+*/
+
+
+header {
+  grid-row: span 2;
+  transform: rotate(90deg);
+  transform-origin: top left;
+  position: relative;
+  top: 3%;
+  left: 17%;
+  font-size: 2.2em;
+  width: max-content;
+  margin-left: 4rem;
+}
+
+header h1 {
+  font-family: 'Sigmar One', cursive;
+  color: midnightblue;
+}
+
+header p {
+  font-size: 0.5em;
+}

@@ -1,0 +1,11 @@
+/*
+Joseph P. Pasaoa
+ImageCard Component Styling | Joseph's Random Cat-Dog Image Fetcher
+*/
+
+
+.imagecard {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

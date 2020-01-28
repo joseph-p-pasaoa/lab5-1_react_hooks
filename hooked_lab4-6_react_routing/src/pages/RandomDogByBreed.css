@@ -1,0 +1,26 @@
+/*
+Joseph P. Pasaoa
+RandomDogByBreed Page Component Styling | Joseph's Random Cat-Dog Image Fetcher
+*/
+
+
+.console {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 100%;
+  background-color: #111;
+}
+
+.console label {
+  margin: 3px 3px 3px 14px;
+  color: #fff;
+  font-size: 0.5em;
+}
+
+.console select {
+  margin: 3px;
+}
