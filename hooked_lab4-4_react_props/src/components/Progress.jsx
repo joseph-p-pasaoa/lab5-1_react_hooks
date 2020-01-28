@@ -11,17 +11,19 @@ import './Progress.css';
 
 /* MAIN */
 const Progress = (props) => {
+  const { raised, target, percentToTarget } = props;
+
   return (
     <section id="progress">
       <h2>Progress</h2>
-      <strong>Raised <span>${props.raised}</span> of <em>${props.target}</em></strong>
+      <strong>Raised <span>${raised}</span> of <em>${target}</em></strong>
       <div 
         id="progressBar" 
         style={{
-          "width": `${props.percentToTarget >= 100 ? 100 : props.percentToTarget}%`
+          "width": `${percentToTarget >= 100 ? 100 : percentToTarget}%`
         }}
       >
-        {props.percentToTarget}%
+        {percentToTarget}%
       </div>
     </section>
   )

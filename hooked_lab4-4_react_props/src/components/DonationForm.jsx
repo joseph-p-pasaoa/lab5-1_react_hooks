@@ -11,18 +11,22 @@ import './DonationForm.css';
 
 /* MAIN */
 const DonationForm = (props) => {
+  const {
+    errorMsgOpacity, nameValue, msgValue, amountValue, handleSubmit, handleChange
+  } = props;
+
   return (
     <section id="form">
       <h2>Make a Donation</h2>
-      <p style={props.errorMsgOpacity}>Please set a donation amount</p>
-      <form id="formDonate" onSubmit={props.handleSubmit}>
+      <p style={errorMsgOpacity}>Please set a donation amount</p>
+      <form id="formDonate" onSubmit={handleSubmit}>
         <label htmlFor="nameValue">Name</label>
         <input 
           type="text" 
           id="nameValue" 
           name="nameValue" 
-          onChange={props.handleChange} 
-          value={props.nameValue} 
+          onChange={handleChange} 
+          value={nameValue} 
           placeholder="Enter your name" 
           required 
         />
@@ -31,8 +35,8 @@ const DonationForm = (props) => {
           type="text" 
           id="msgValue" 
           name="msgValue" 
-          onChange={props.handleChange} 
-          value={props.msgValue} 
+          onChange={handleChange} 
+          value={msgValue} 
           placeholder="Message to Alejo?" 
           required 
         />
@@ -44,8 +48,8 @@ const DonationForm = (props) => {
           min="1" 
           max="1000" 
           step="1" 
-          onChange={props.handleChange} 
-          value={props.amountValue} 
+          onChange={handleChange} 
+          value={amountValue} 
         />
         <button type="submit">Donate!</button>
       </form>

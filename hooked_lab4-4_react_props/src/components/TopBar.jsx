@@ -10,7 +10,8 @@ import './TopBar.css';
 
 
 /* MAIN */
-const TopBar = (props) => {
+const TopBar = () => {
+
   return (
     <header>
       <h1>Go Fund <span>Me</span></h1>
