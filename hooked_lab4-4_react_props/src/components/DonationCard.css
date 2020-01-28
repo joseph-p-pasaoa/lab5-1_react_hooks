@@ -1,0 +1,27 @@
+/*
+Joseph P. Pasaoa
+Donation Card Css | Go Fund Me Lab
+*/
+
+
+li.donation {
+  border: inset 1px #666;
+  border-radius: 3px;
+  background-color: #eee;
+  margin: 6px 6px 3px 0px;
+  padding: 3px;
+}
+
+h3 {
+  margin-bottom: 9px;
+  padding: 5px 3px 2px 3px;
+  
+  color: deepskyblue;
+  font-family: 'Kaushan Script', cursive;
+}
+
+li.donation p {
+  margin: 3px 0px 9px 15px;
+  
+  font-size: 0.9em;
+}

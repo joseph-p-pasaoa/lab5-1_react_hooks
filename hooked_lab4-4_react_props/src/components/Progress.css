@@ -1,0 +1,49 @@
+/*
+Joseph P. Pasaoa
+Progress Css | Go Fund Me Lab
+*/
+
+
+section#progress {
+  border: solid 2px #111;
+  border-radius: 7px;
+  margin: 12px 12px 6px 6px;
+  background-color: mediumseagreen;
+}
+
+section#progress strong {
+  font-family: 'Kaushan Script', cursive;
+  font-size: 1.7em;
+  color: #b3aba0;
+  text-shadow: 0px 3px 4px #000;
+}
+
+section#progress strong span {
+  color: #ffad17;
+}
+
+section#progress strong em {
+  color: #d4d4d4;
+}
+
+div#progressBar {
+  position: relative;
+  left: 1px;
+  height: 26px;
+  margin-top: 3px;
+  border: solid 2px cadetblue;
+  border-radius: 15px;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+  box-shadow: 0px 6px 5px #025602;
+  outline: none;
+
+  color: white;
+}

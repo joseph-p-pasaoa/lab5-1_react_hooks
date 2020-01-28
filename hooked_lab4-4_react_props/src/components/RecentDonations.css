@@ -1,0 +1,24 @@
+/*
+Joseph P. Pasaoa
+Recent Donations Css | Go Fund Me Lab
+*/
+
+
+section#recent {
+  grid-row: span 2;
+
+  border: solid 2px #111;
+  border-radius: 7px;
+  margin: 12px 6px 12px 12px;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 24px auto;
+}
+
+ul {
+  border-top: solid 1px #ddd;
+  border-bottom: solid 1px #ddd;
+  margin-bottom: 12px;
+  overflow-y: scroll;
+}

@@ -1,0 +1,126 @@
+/*
+Joseph P. Pasaoa
+APP Css | Go Fund Me Lab
+*/
+
+
+/* CSS RESET
+http://meyerweb.com/eric/tools/css/reset/ 
+v2.0 | 20110126
+License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/* FONT INITS */
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('./assets/fonts/Josefin_Sans/JosefinSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Kaushan Script';
+  src: url('./assets/fonts/Kaushan_Script/KaushanScript-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Quicksand';
+  src: url('./assets/fonts/Quicksand/Quicksand-VariableFont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+/* MAIN STYLE */
+html, body, div#root, .App, div#grid-base {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  background: rgb(164,155,139);
+  background: linear-gradient(0deg, rgba(164,155,139,0.5172443977591037) 35%, rgba(218,214,206,0.24833683473389356) 100%);
+}
+
+/* .App {
+  text-align: center;
+} */
+
+div#grid-base {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 1fr 3fr 1fr;
+}
+
+strong {
+  font-weight: bold;
+}
+
+section {
+  padding: 6px 12px;
+  background-color: #fff;
+  box-shadow: 0px 4px 7px #aaa
+}
+
+h2 {
+  margin-bottom: 9px;
+  
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: bold;
+}
+
+footer {
+  grid-column: 2;
+  margin-right: 2vw;
+
+  text-align: right;
+  font-family: 'Kaushan Script', cursive;
+  font-size: 0.8em;
+}

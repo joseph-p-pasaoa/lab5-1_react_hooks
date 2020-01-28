@@ -1,0 +1,29 @@
+/*
+Joseph P. Pasaoa
+Top Bar Css | Go Fund Me Lab
+*/
+
+
+header {
+  grid-column: span 2;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+h1 {
+  font-size: 4em;
+}
+
+h1 span {
+  color: #05288e;
+  font-family: 'Kaushan Script', cursive;
+}
+
+header p {
+  font-size: 1em;
+  font-style: italic;
+}

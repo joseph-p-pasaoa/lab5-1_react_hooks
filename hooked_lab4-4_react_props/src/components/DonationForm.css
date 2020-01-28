@@ -1,0 +1,151 @@
+/*
+Joseph P. Pasaoa
+Donation Form Css | Go Fund Me Lab
+*/
+
+
+section#form {
+  border: solid 2px #111;
+  border-radius: 7px;
+  margin: 6px 12px 12px 6px;
+}
+
+section#form p {
+  display: block;
+  margin-bottom: 9px;
+
+  color: #f00;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+form input {
+  height: 18px;
+  margin: 2px 0px 18px 0px;
+  padding: 0px 6px;
+  border-radius: 4px;
+
+  font-size: 0.8em;
+}
+
+input#nameValue {
+  width: 200px;
+}
+
+input#msgValue {
+  margin-bottom: 22px;
+  width: 75%;
+}
+
+input#amountValue {
+  width: 50%;
+  margin-bottom: 30px;
+}
+
+button {
+  width: 70px;
+  height: 21px;
+  background-color: #fff9ee;
+  border-radius: 6px;
+  box-shadow: 0px 3px 4px #888;
+}
+
+
+
+input[type=text] {
+  background-color: #d0f3ff;
+}
+
+input[type=range] {
+  height: 32px;
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 100%;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 4px #000000;
+  background: #0F0EDE;
+  border-radius: 11px;
+  border: 1px solid #000000;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 1px 1px 1px #000000;
+  border: 1px solid #000000;
+  height: 24px;
+  width: 10px;
+  border-radius: 4px;
+  background: #DDFED3;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -11px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #0F0EDE;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 4px #000000;
+  background: #0F0EDE;
+  border-radius: 11px;
+  border: 1px solid #000000;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000;
+  border: 1px solid #000000;
+  height: 24px;
+  width: 10px;
+  border-radius: 4px;
+  background: #DDFED3;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #0F0EDE;
+  border: 1px solid #000000;
+  border-radius: 22px;
+  box-shadow: 1px 1px 4px #000000;
+}
+input[type=range]::-ms-fill-upper {
+  background: #0F0EDE;
+  border: 1px solid #000000;
+  border-radius: 22px;
+  box-shadow: 1px 1px 4px #000000;
+}
+input[type=range]::-ms-thumb {
+  margin-top: 1px;
+  box-shadow: 1px 1px 1px #000000;
+  border: 1px solid #000000;
+  height: 24px;
+  width: 10px;
+  border-radius: 4px;
+  background: #DDFED3;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #0F0EDE;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #0F0EDE;
+}
