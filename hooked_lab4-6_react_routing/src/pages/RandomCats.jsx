@@ -1,49 +1,55 @@
 /*
 Joseph P. Pasaoa
-RandomCats Page Component | Joseph's Random Cat-Dog Image Fetcher
+RandomCats Page Component | Joseph's Random Cat-Dog Image Fetcher (Hooks Lab Revision)
 */
 
 
 /* IMPORTS */
     // external
-    import React, { Component } from 'react';
+    import React, { useState, useEffect } from 'react';
     import axios from 'axios';
 
     // local
     import ImageCard from '../components/ImageCard';
 
 
-/* COMPONENT & EXPORT */
-export default class RandomCats extends Component {
-  state = {
-    urls: []
-  }
+/* COMPONENT */
+const RandomCats = (props) => {
 
-  componentDidMount = async () => {
-    await this.getImages();
-  }
+  // USESTATES
+    const [ urls, setUrls ] = useState([]);
+
+  // USEEFFECTS
+  useEffect(() => {
+      const getImages = async () => {
+        const howMany = props.match.params.num;
+        let response = null;
+        try {
+          response = await axios.get(`https://api.thecatapi.com/v1/images/search?limit=${howMany}`);
+        } catch (err) {
+          throw new Error ("(RandomCats): ", err);
+        }
+        const newUrls = response.data.map(obj => obj.url);
+        setUrls(newUrls);
+      }
+
+      getImages();
+
+  }, [ props.match.params.num, props.location ]);
 
 
-  getImages = async () => {
-    const howMany = this.props.match.params.num;
-    let response = null;
-    try {
-      response = await axios.get(`https://api.thecatapi.com/v1/images/search?limit=${howMany}`);
-    } catch (err) {
-      throw new Error ("(RandomCats): ", err);
-    }
-    const newUrls = response.data.map(obj => obj.url);
-    this.setState({ urls: newUrls });
-  }
+  // PRE-RETURN
+  const listImageCards = urls.map(url => <ImageCard key={url} url={url} alt="a random cat" />);
 
 
-  render () {
-    const listImageCards = this.state.urls.map(url => <ImageCard key={url} url={url} alt="a random cat" />);
-
-    return (
-      <div className="stage--grid">
-        {listImageCards}
-      </div>
-    );
-  }
+  // RETURN
+  return (
+    <div className="stage--grid">
+      {listImageCards}
+    </div>
+  );
 }
+
+
+/* EXPORT */
+export default RandomCats;

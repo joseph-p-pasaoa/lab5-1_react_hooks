@@ -1,13 +1,13 @@
 /*
 Joseph P. Pasaoa
-RandomDogByBreed Page Component | Joseph's Random Cat-Dog Image Fetcher
+RandomDogByBreed Page Component | Joseph's Random Cat-Dog Image Fetcher (Hooks Lab Revision)
 */
 
 
 /* IMPORTS */
     // external
-    import React, { Component } from 'react';
-    import { withRouter } from 'react-router-dom';
+    import React, { useState, useEffect } from 'react';
+    // import { withRouter } from 'react-router-dom';
     import axios from 'axios';
 
     // local
@@ -16,91 +16,96 @@ RandomDogByBreed Page Component | Joseph's Random Cat-Dog Image Fetcher
 
 
 /* COMPONENT */
-class RandomDogByBreed extends Component {
-  state = {
-    breeds: [],
-    url: ""
-  }
+const RandomDogByBreed = (props) => {
 
-  componentDidMount = async () => {
-    await this.getBreeds();
-    if (this.props.match.params.breed !== "default" && !this.state.url) {
-      await this.getImage();
-    }
-  }
+  // USESTATES
+    const [ breeds, setBreeds ] = useState([]);
+    const [ url, setUrls ] = useState("");
 
-  componentDidUpdate = async (prevProps, prevState) => {
-    if (this.props.location.pathname !== prevProps.location.pathname) {
-      await this.getImage();
-    }
-  }
+  // USEEFFECTS
+  // populate breeds dropdown on load
+  useEffect(() => {
+      const getBreeds = async () => {
+        let response = null;
+        try {
+          response = await axios.get(`https://dog.ceo/api/breeds/list/all`);
+        } catch (err) {
+          throw new Error ("(RandomDogByBreed: getBreeds): ", err);
+        }
+        const breedsObj = response.data.message;
+        let breedArray = [];
+        for (let key in breedsObj) {
+          breedArray.push(key);
+        }
+        setBreeds(breedArray);
+      }
+
+      getBreeds();
+
+  }, []);
+
+  // get new images on breed or location.key change
+  useEffect(() => {
+      const getImage = async () => {
+        const whichBreed = props.match.params.breed;
+        let response = null;
+        try {
+          response = await axios.get(`https://dog.ceo/api/breed/${whichBreed}/images/random`);
+        } catch (err) {
+          console.log(err);
+          throw new Error ("(RandomDogByBreed): ", err);
+        }
+        setUrls(response.data.message);
+      }
+
+      if (props.match.params.breed !== "default") {
+        getImage();
+      }
+
+  }, [ props.match.params.breed, props.location ]);
 
 
-  getBreeds = async () => {
-    let response = null;
-    try {
-      response = await axios.get(`https://dog.ceo/api/breeds/list/all`);
-    } catch (err) {
-      throw new Error ("(RandomDogByBreed: getBreeds): ", err);
-    }
-    const breedsObj = response.data.message;
-    let breedArray = [];
-    for (let key in breedsObj) {
-      breedArray.push(key);
-    }
-    this.setState({ breeds: breedArray });
-  }
-  
-  getImage = async () => {
-    const whichBreed = this.props.match.params.breed;
-    let response = null;
-    try {
-      response = await axios.get(`https://dog.ceo/api/breed/${whichBreed}/images/random`);
-    } catch (err) {
-      throw new Error ("(RandomDogByBreed): ", err);
-    }
-    this.setState({ url: response.data.message });
-  }
-
-  handleChange = (e) => {
+  // HANDLERS
+  const handleChange = (e) => {
     const selectedBreed = e.target.value;
-    this.props.history.push({
+    props.history.push({
         pathname: `/dogs/${selectedBreed}`
     });
   }
 
 
-  render () {
-    // Populate breed selector
-    let listBreeds = null;
-    if (this.state.breeds.length) {
-      listBreeds = this.state.breeds.map(breed => <option key={breed} value={breed}>{breed}</option>);
-    }
-
-    // Display image after url get
-    let dogCard = null;
-    if (this.state.url) {
-      dogCard = <ImageSpot url={this.state.url} />;
-    }
-
-    return (
-      <div className="stage--addconsole">
-
-        <div className="console">
-          <label htmlFor="selectValue">Pick a dog breed:</label>
-          <select name="selectValue" value={this.props.match.params.breed} onChange={this.handleChange}>
-            <option value="default" disabled>Pick a breed --</option>
-            {listBreeds}
-          </select>
-        </div>
-
-        {dogCard}
-
-      </div>
-    );
+  // PRE-RETURN
+  // prep breed selector options
+  let listBreeds = null;
+  if (breeds.length) {
+    listBreeds = breeds.map(breed => <option key={breed} value={breed}>{breed}</option>);
   }
+
+  // display image after url get
+  let dogCard = null;
+  if (url) {
+    dogCard = <ImageSpot url={url} />;
+  }
+
+
+  // RETURN
+  return (
+    <div className="stage--addconsole">
+
+      <div className="console">
+        <label htmlFor="selectValue">Pick a dog breed:</label>
+        <select name="selectValue" value={props.match.params.breed} onChange={handleChange}>
+          <option value="default" disabled>Pick a breed --</option>
+          {listBreeds}
+        </select>
+      </div>
+
+      {dogCard}
+
+    </div>
+  );
 }
 
 
 /* EXPORT */
-export default withRouter(RandomDogByBreed);
+export default RandomDogByBreed;

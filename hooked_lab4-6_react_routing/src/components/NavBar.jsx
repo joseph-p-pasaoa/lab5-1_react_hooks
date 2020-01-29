@@ -1,6 +1,6 @@
 /*
 Joseph P. Pasaoa
-NavBar Component | Joseph's Random Cat-Dog Image Fetcher
+NavBar Component | Joseph's Random Cat-Dog Image Fetcher (Hooks Lab Revision)
 */
 
 
