@@ -1,6 +1,6 @@
 /*
 Joseph P. Pasaoa
-APP | Go Fund Me Lab
+APP MAIN | Go Fund Me Lab (Hooks Lab Revision)
 */
 
 
@@ -46,7 +46,8 @@ const App = () => {
         setMsgValue(e.target.value);
         break;
       default:
-        break;
+        console.log("error: switch error on handleChange");
+        throw new Error("You're not supposed to be here.");
     }
   }
 

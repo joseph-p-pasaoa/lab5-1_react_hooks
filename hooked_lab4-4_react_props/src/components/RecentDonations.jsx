@@ -1,6 +1,6 @@
 /*
 Joseph P. Pasaoa
-Recent Donations Component | Go Fund Me Lab
+Recent Donations Component | Go Fund Me Lab (Hooks Lab Revision)
 */
 
 

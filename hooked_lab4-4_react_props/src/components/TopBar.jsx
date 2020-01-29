@@ -1,6 +1,6 @@
 /*
 Joseph P. Pasaoa
-Top Bar Component | Go Fund Me Lab
+Top Bar Component | Go Fund Me Lab (Hooks Lab Revision)
 */
 
 
