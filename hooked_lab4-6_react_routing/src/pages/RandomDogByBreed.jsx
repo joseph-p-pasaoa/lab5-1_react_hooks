@@ -7,7 +7,6 @@ RandomDogByBreed Page Component | Joseph's Random Cat-Dog Image Fetcher (Hooks L
 /* IMPORTS */
     // external
     import React, { useState, useEffect } from 'react';
-    // import { withRouter } from 'react-router-dom';
     import axios from 'axios';
 
     // local
@@ -18,13 +17,12 @@ RandomDogByBreed Page Component | Joseph's Random Cat-Dog Image Fetcher (Hooks L
 /* COMPONENT */
 const RandomDogByBreed = (props) => {
 
-  // USESTATES
+    // USESTATES
     const [ breeds, setBreeds ] = useState([]);
     const [ url, setUrls ] = useState("");
 
-  // USEEFFECTS
-  // populate breeds dropdown on load
-  useEffect(() => {
+    // USEEFFECTS
+  useEffect(() => { // populate breeds dropdown on load
       const getBreeds = async () => {
         let response = null;
         try {
@@ -44,8 +42,7 @@ const RandomDogByBreed = (props) => {
 
   }, []);
 
-  // get new images on breed or location.key change
-  useEffect(() => {
+  useEffect(() => { // get new images on breed or location.key change
       const getImage = async () => {
         const whichBreed = props.match.params.breed;
         let response = null;
@@ -65,7 +62,7 @@ const RandomDogByBreed = (props) => {
   }, [ props.match.params.breed, props.location ]);
 
 
-  // HANDLERS
+    // HANDLERS
   const handleChange = (e) => {
     const selectedBreed = e.target.value;
     props.history.push({
@@ -74,21 +71,21 @@ const RandomDogByBreed = (props) => {
   }
 
 
-  // PRE-RETURN
-  // prep breed selector options
+    // PRE-RETURN
+    // prep breed selector options
   let listBreeds = null;
   if (breeds.length) {
     listBreeds = breeds.map(breed => <option key={breed} value={breed}>{breed}</option>);
   }
 
-  // display image after url get
+    // prep image component after url data fetched
   let dogCard = null;
   if (url) {
     dogCard = <ImageSpot url={url} />;
   }
 
 
-  // RETURN
+    // RETURN
   return (
     <div className="stage--addconsole">
 
