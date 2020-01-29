@@ -13,7 +13,7 @@ OneRandomDog Page Component | Joseph's Random Cat-Dog Image Fetcher (Hooks Lab R
     import ImageSpot from '../components/ImageSpot';
 
 
-/* COMPONENT & EXPORT */
+/* COMPONENT */
 const OneRandomDog = (props) => {
 
   // USESTATES

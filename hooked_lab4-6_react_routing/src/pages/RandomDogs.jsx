@@ -13,7 +13,7 @@ RandomDogs Page Component | Joseph's Random Cat-Dog Image Fetcher (Hooks Lab Rev
     import ImageCard from '../components/ImageCard';
 
 
-/* COMPONENT & EXPORT */
+/* COMPONENT */
 const RandomDogs = (props) => {
 
   // USESTATES
