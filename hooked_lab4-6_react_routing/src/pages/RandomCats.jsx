@@ -1,6 +1,6 @@
 /*
 Joseph P. Pasaoa
-RandomCats Page Component | Joseph's Random Cat-Dog Image Fetcher
+RandomCats Page Component | Joseph's Random Cat-Dog Image Fetcher (Hooks Lab Revision)
 */
 
 

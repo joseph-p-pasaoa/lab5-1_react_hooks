@@ -1,6 +1,6 @@
 /*
 Joseph P. Pasaoa
-RandomDogByBreed Page Component | Joseph's Random Cat-Dog Image Fetcher
+RandomDogByBreed Page Component | Joseph's Random Cat-Dog Image Fetcher (Hooks Lab Revision)
 */
 
 

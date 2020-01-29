@@ -1,6 +1,6 @@
 /*
 Joseph P. Pasaoa
-ImageCard Component | Joseph's Random Cat-Dog Image Fetcher
+ImageCard Component | Joseph's Random Cat-Dog Image Fetcher (Hooks Lab Revision)
 */
 
 
