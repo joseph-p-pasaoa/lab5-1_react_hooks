@@ -17,12 +17,13 @@ RandomDogByBreed Page Component | Joseph's Random Cat-Dog Image Fetcher (Hooks L
 /* COMPONENT */
 const RandomDogByBreed = (props) => {
 
-    // USESTATES
-    const [ breeds, setBreeds ] = useState([]);
-    const [ url, setUrls ] = useState("");
+  // USESTATES
+  const [ breeds, setBreeds ] = useState([]);
+  const [ url, setUrls ] = useState("");
 
-    // USEEFFECTS
-  useEffect(() => { // populate breeds dropdown on load
+  // USEEFFECTS
+  useEffect(() => {
+      /* populate breeds state on load */
       const getBreeds = async () => {
         let response = null;
         try {
@@ -39,10 +40,10 @@ const RandomDogByBreed = (props) => {
       }
 
       getBreeds();
-
   }, []);
 
-  useEffect(() => { // get new images on breed or location.key change
+  useEffect(() => {
+      /* get new images on breed or location.key change */
       const getImage = async () => {
         const whichBreed = props.match.params.breed;
         let response = null;
@@ -58,11 +59,10 @@ const RandomDogByBreed = (props) => {
       if (props.match.params.breed !== "default") {
         getImage();
       }
-
   }, [ props.match.params.breed, props.location ]);
 
 
-    // HANDLERS
+  // HANDLERS
   const handleChange = (e) => {
     const selectedBreed = e.target.value;
     props.history.push({
@@ -71,21 +71,21 @@ const RandomDogByBreed = (props) => {
   }
 
 
-    // PRE-RETURN
-    // prep breed selector options
+  // PRE-RETURN
+  /* prep breed selector options */
   let listBreeds = null;
   if (breeds.length) {
     listBreeds = breeds.map(breed => <option key={breed} value={breed}>{breed}</option>);
   }
 
-    // prep image component after url data fetched
+  /* prep image component after url data fetched */
   let dogCard = null;
   if (url) {
     dogCard = <ImageSpot url={url} />;
   }
 
 
-    // RETURN
+  // RETURN
   return (
     <div className="stage--addconsole">
 

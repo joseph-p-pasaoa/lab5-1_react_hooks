@@ -14,7 +14,6 @@ ImageSpot Component | Joseph's Random Cat-Dog Image Fetcher (Hooks Lab Revision)
 
 /* COMPONENT */
 const ImageSpot = (props) => {
-
   return (
     <div className="imagespot-bg-method" style={{ backgroundImage: `url(${props.url})` }}></div>
   );

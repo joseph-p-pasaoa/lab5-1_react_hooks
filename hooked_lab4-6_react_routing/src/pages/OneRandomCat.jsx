@@ -17,7 +17,7 @@ OneRandomCat Page Component | Joseph's Random Cat-Dog Image Fetcher (Hooks Lab R
 const OneRandomCat = (props) => {
 
   // USESTATES
-    const [ url, setUrl ] = useState("");
+  const [ url, setUrl ] = useState("");
 
   // USEEFFECTS
   useEffect(() => {
@@ -32,7 +32,6 @@ const OneRandomCat = (props) => {
       };
 
       getImage();
-
     }, [props.location]);
 
 

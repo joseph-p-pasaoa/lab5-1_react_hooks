@@ -14,7 +14,6 @@ Header Component | Joseph's Random Cat-Dog Image Fetcher (Hooks Lab Revision)
 
 /* COMPONENT */
 const Header = () => {
-
   return (
     <header>
       <p>Copyright ©2019 by Joseph P. Pasaoa. All rights reserved.</p>

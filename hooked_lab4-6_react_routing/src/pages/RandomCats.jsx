@@ -17,7 +17,7 @@ RandomCats Page Component | Joseph's Random Cat-Dog Image Fetcher (Hooks Lab Rev
 const RandomCats = (props) => {
 
   // USESTATES
-    const [ urls, setUrls ] = useState([]);
+  const [ urls, setUrls ] = useState([]);
 
   // USEEFFECTS
   useEffect(() => {
@@ -34,7 +34,6 @@ const RandomCats = (props) => {
       }
 
       getImages();
-
   }, [ props.match.params.num, props.location ]);
 
 
