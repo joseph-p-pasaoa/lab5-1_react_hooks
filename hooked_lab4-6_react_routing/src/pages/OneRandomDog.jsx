@@ -29,9 +29,10 @@ const OneRandomDog = (props) => {
           throw new Error ("(OneRandomDog): ", err);
         }
         setUrl(response.data.message);
-      }
+      };
 
       getImage();
+
   }, [props.location]);
 
 
