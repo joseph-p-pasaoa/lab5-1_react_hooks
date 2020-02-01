@@ -31,6 +31,7 @@ const Videopage = (props) => {
   const refNameInput = React.createRef();
   const refCommentInput = React.createRef();
   const refBtnSubmit = React.createRef();
+  const refStageTop = React.createRef();
 
 
   // HANDLERS
@@ -95,18 +96,15 @@ const Videopage = (props) => {
     }
   }
 
-
-  // future return to top feature wip
-  // handleScrollToTop = () => {
-  //   if (this.$ref && location.href.includes('#my-ref')) {
-  //     this.$ref.scrollIntoView({
-  //         // optional params
-  //         behaviour: 'smooth',
-  //         block: 'start',
-  //         inline: 'center',
-  //     });
-  //   }
-  // }
+  const handleReturnToTop = () => {
+    refStageTop.current.scrollIntoView({
+          // optional params
+          behaviour: 'smooth',
+          block: 'end',
+          inline: 'center',
+      });
+    // refStageTop.current.scrollTop = 0;
+  }
 
 
   // PRE-RETURN
@@ -139,6 +137,8 @@ const Videopage = (props) => {
   // RETURN
   return(
     <div className="stage">
+
+      <div ref={refStageTop}></div>
 
       <div className="ytvideo-box">
         <YouTube
@@ -187,7 +187,7 @@ const Videopage = (props) => {
 
       <div className="display-comments">
         {listComments}
-        {/* {comments.length ? <Link to={{ hash: "#top" }}>Return to top</Link> : false} */}
+        {comments.length > 0 ? <button onClick={handleReturnToTop}>Return to top</button> : null}
       </div>
 
     </div>
