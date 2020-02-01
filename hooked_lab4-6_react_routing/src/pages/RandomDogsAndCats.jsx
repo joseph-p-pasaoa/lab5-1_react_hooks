@@ -17,7 +17,7 @@ RandomDogsAndCats Page Component | Joseph's Random Cat-Dog Image Fetcher (Hooks 
 const RandomDogsAndCats = (props) => {
 
   // USESTATES
-    const [ urls, setUrls ] = useState([]);
+  const [ urls, setUrls ] = useState([]);
 
   // USEEFFECTS
   useEffect(() => {
@@ -77,7 +77,6 @@ const RandomDogsAndCats = (props) => {
       };
 
       getImages();
-
   }, [props.location]);
 
 

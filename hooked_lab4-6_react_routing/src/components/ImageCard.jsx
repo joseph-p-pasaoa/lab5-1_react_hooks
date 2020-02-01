@@ -14,7 +14,6 @@ ImageCard Component | Joseph's Random Cat-Dog Image Fetcher (Hooks Lab Revision)
 
 /* COMPONENT */
 const ImageCard = (props) => {
-
   return (
     <>
       <img src={props.url} alt={props.alt} className="imagecard" />
