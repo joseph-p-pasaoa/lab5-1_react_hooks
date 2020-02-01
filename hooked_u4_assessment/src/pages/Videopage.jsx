@@ -26,6 +26,7 @@ const Videopage = (props) => {
   });
   const [ errorMsg, setErrorMsg ] = useState("");
 
+  // CREATE REFS
   const refNameInput = React.createRef();
   const refCommentInput = React.createRef();
   const refBtnSubmit = React.createRef();
