@@ -26,6 +26,7 @@ const Videopage = (props) => {
   });
   const [ errorMsg, setErrorMsg ] = useState("");
 
+
   // CREATE REFS
   const refNameInput = React.createRef();
   const refCommentInput = React.createRef();
@@ -125,10 +126,10 @@ const Videopage = (props) => {
   if (comments.length) {
     listComments = comments.map(({name, comment}, i) => {
         return (
-          <CommentCard 
-            key={i.toString() + videoId} 
-            name={name} 
-            comment={comment} 
+          <CommentCard
+            key={i.toString() + videoId}
+            name={name}
+            comment={comment}
           />
         );
     });
@@ -141,41 +142,41 @@ const Videopage = (props) => {
 
       <div className="ytvideo-box">
         <YouTube
-          key={videoId} 
-          videoId={videoId} 
-          opts={opts} 
+          key={videoId}
+          videoId={videoId}
+          opts={opts}
 
-          id={videoId} 
-          className={"ytvideo"} 
+          id={videoId}
+          className={"ytvideo"}
         />
       </div>
 
       <form className="form-comments" onSubmit={handleSubmit}>
         <div className="form-row">
           <label htmlFor="nameTxt">Name</label>
-          <input 
-            type="text" 
-            name="nameTxt" 
-            id="nameTxt" 
-            className="input-name" 
-            ref={refNameInput} 
-            value={nameTxt} 
-            onChange={handleChange} 
+          <input
+            type="text"
+            name="nameTxt"
+            id="nameTxt"
+            className="input-name"
+            ref={refNameInput}
+            value={nameTxt}
+            onChange={handleChange}
             placeholder="Your Name"
           />
         </div>
         <div className="form-row">
           <label htmlFor="commentTxt">Comment</label>
           <textarea 
-            type="text" 
-            name="commentTxt" 
-            id="commentTxt" 
-            className="input-comment" 
-            ref={refCommentInput} 
-            value={commentTxt} 
-            onChange={handleChange} 
-            onKeyDown={handleKeydown} 
-            placeholder="What do you want to say?..." 
+            type="text"
+            name="commentTxt"
+            id="commentTxt"
+            className="input-comment"
+            ref={refCommentInput}
+            value={commentTxt}
+            onChange={handleChange}
+            onKeyDown={handleKeydown}
+            placeholder="What do you want to say?..."
           />
         </div>
         <div className="form-row">

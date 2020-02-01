@@ -48,8 +48,8 @@ const NavBar = (props) => {
     <ul className="nav-bar">
       <Logo />
       <NavLink 
-        className="nav-link" 
-        to={"/home"} 
+        className="nav-link"
+        to={"/home"}
       >Home</NavLink>
       <NavLink className="nav-link" to={"/about"}>About</NavLink>
       <Route path={"/video/*"} render={ () => {

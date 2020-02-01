@@ -21,7 +21,6 @@ const Homepage = (props) => {
 
   // USESTATES
   const [ searchTxt, setSearchTxt ] = useState("");
-  // const [ triggerReset, setTriggerReset ] = useState(false);
   const [ errorMsg, setErrorMsg ] = useState("");
   const [ results, setResults ] = useState([]);
 
@@ -75,12 +74,12 @@ const Homepage = (props) => {
         const thumbUrl = result.snippet.thumbnails.high.url; // width: 480px h: 360px
 
         return (
-          <VideoCard 
-            key={i} 
-            videoId={videoId} 
-            title={title} 
-            desc={desc} 
-            thumbUrl={thumbUrl} 
+          <VideoCard
+            key={i}
+            videoId={videoId}
+            title={title}
+            desc={desc}
+            thumbUrl={thumbUrl}
           />
         );
     });
