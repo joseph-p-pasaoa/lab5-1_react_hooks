@@ -6,7 +6,7 @@ Videopage Component | YouTube Abbreviated | Unit 4 Assessment
 
 /* IMPORTS */
     // external
-    import React, { Component } from 'react';
+    import React, { useState } from 'react';
     import YouTube from 'react-youtube';
 
     // local
@@ -15,50 +15,59 @@ Videopage Component | YouTube Abbreviated | Unit 4 Assessment
     const { processInput } = require('../helpers/globalHelp.js');
 
 
-/* COMPONENT + EXPORT */
-export default class Videopage extends Component {
-  state = {
-    nameTxt: "",
-    commentTxt: "",
-    errorMessage: "",
-    comments: []
+/* COMPONENT */
+const Videopage = (props) => {
+
+  // USESTATES
+  const [ inputValue , setInputValue ] = useState({
+      nameTxt: "",
+      commentTxt: "",
+      comments: []
+  });
+  const [ errorMsg, setErrorMsg ] = useState("");
+
+
+  // CREATE REFS
+  const refNameInput = React.createRef();
+  const refCommentInput = React.createRef();
+  const refBtnSubmit = React.createRef();
+  const refStageTop = React.createRef();
+
+
+  // HANDLERS
+  const handleChange = (e) => {
+    const { name , value } = e.target;
+    setInputValue(prevState => ({
+          ...prevState,
+          [name] : value
+      })
+    );
   }
 
-
-  handleChange = (e) => {
-    this.setState({
-        [e.target.name]: e.target.value
-    });
-  }
-
-  handleKeydown = (e) => {
+  const handleKeydown = (e) => {
     if (e.keyCode === 13 && !e.shiftKey) {
-      this.handleSubmit(e);
+      handleSubmit(e);
     }
   }
 
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    refBtnSubmit.current.blur();
 
-    const nameCheck = processInput(this.state.nameTxt, "name");
-    const cmtCheck = processInput(this.state.commentTxt, "comment");
+    const { nameTxt, commentTxt, comments } = inputValue;
+    const nameCheck = processInput(nameTxt, "name");
+    const cmtCheck = processInput(commentTxt, "comment");
       const [ namePass, namePayload ] = [ nameCheck.pass, nameCheck.payload ];
       const [ cmtPass, cmtPayload ] = [ cmtCheck.pass, cmtCheck.payload ];
     if (!namePass && !cmtPass) {
-      this.refs.input1.focus();
-      this.setState({
-          errorMessage: "Invalid name and comment. Please re-enter them and try again."
-      });
+      refNameInput.current.focus();
+      setErrorMsg("Invalid name and comment. Please re-enter them and try again.");
     } else if (!namePass) {
-      this.refs.input1.focus();
-      this.setState({
-          errorMessage: namePayload
-      });
+      refNameInput.current.focus();
+      setErrorMsg(namePayload);
     } else if (!cmtPass) {
-      this.refs.input2.focus();
-      this.setState({
-          errorMessage: cmtPayload
-      });
+      refCommentInput.current.focus();
+      setErrorMsg(cmtPayload);
     } else {
       const cmtWithBreaks = cmtPayload.split('\n').map((line, i) => {
         return (
@@ -71,118 +80,119 @@ export default class Videopage extends Component {
         name: namePayload,
         comment: cmtWithBreaks
       }
-      this.refs.input1.blur();
-      this.refs.input2.blur();
-      this.refs.button.blur();
-      this.setState((state, props) => {
-          return { 
+      refNameInput.current.blur();
+      refCommentInput.current.blur();
+      setErrorMsg("");
+      setInputValue(prevState => ({ 
             nameTxt: "",
             commentTxt: "",
-            errorMessage: "",
+            errorMsg: "",
             comments: [
               newCommentObj,
-              ...state.comments
+              ...comments
             ]
-          }
-      });
+          })
+      );
     }
-    this.refs.button.blur();
   }
 
-  // future return to top feature wip
-  // handleScrollToTop = () => {
-  //   if (this.$ref && location.href.includes('#my-ref')) {
-  //     this.$ref.scrollIntoView({
-  //         // optional params
-  //         behaviour: 'smooth',
-  //         block: 'start',
-  //         inline: 'center',
-  //     });
-  //   }
-  // }
-
-
-  render() {
-    const videoId = this.props.match.params.id;
-    const { nameTxt, commentTxt, errorMessage, comments } = this.state;
-
-    const opts = {
-      height: '510',
-      width: '680',
-      playerVars: {
-        origin: "https://localhost:3000",
-        autoplay: 1,
-      }
-    }
-
-    let listComments = null;
-    if (comments.length) {
-      listComments = comments.map(({name, comment}, i) => {
-          return (
-            <CommentCard 
-              key={i.toString() + videoId} 
-              name={name} 
-              comment={comment} 
-            />
-          );
+  const handleReturnToTop = () => {
+    refStageTop.current.scrollIntoView({
+          // optional params
+          behaviour: 'smooth',
+          block: 'end',
+          inline: 'center',
       });
+  }
+
+
+  // PRE-RETURN
+  const videoId = props.match.params.id;
+  const { nameTxt, commentTxt, comments } = inputValue;
+
+  const opts = {
+    height: '510',
+    width: '680',
+    playerVars: {
+      origin: "https://localhost:3000",
+      autoplay: 1,
     }
+  }
+
+  let listComments = null;
+  if (comments.length) {
+    listComments = comments.map(({name, comment}, i) => {
+        return (
+          <CommentCard
+            key={i.toString() + videoId}
+            name={name}
+            comment={comment}
+          />
+        );
+    });
+  }
 
 
-    return(
-      <div className="stage">
+  // RETURN
+  return(
+    <div className="stage">
 
-        <div className="ytvideo-box">
-          <YouTube
-            key={videoId} 
-            videoId={videoId} 
-            opts={opts} 
+      <div ref={refStageTop}></div>
 
-            id={videoId} 
-            className={"ytvideo"} 
+      <div className="ytvideo-box">
+        <YouTube
+          key={videoId}
+          videoId={videoId}
+          opts={opts}
+
+          id={videoId}
+          className={"ytvideo"}
+        />
+      </div>
+
+      <form className="form-comments" onSubmit={handleSubmit}>
+        <div className="form-row">
+          <label htmlFor="nameTxt">Name</label>
+          <input
+            type="text"
+            name="nameTxt"
+            id="nameTxt"
+            className="input-name"
+            ref={refNameInput}
+            value={nameTxt}
+            onChange={handleChange}
+            placeholder="Your Name"
           />
         </div>
-
-        <form className="form-comments" onSubmit={this.handleSubmit}>
-          <div className="form-row">
-            <label htmlFor="nameTxt">Name</label>
-            <input 
-              type="text" 
-              name="nameTxt" 
-              id="nameTxt" 
-              className="input-name" 
-              ref="input1" 
-              value={nameTxt} 
-              onChange={this.handleChange} 
-              placeholder="Your Name"
-            />
-          </div>
-          <div className="form-row">
-            <label htmlFor="commentTxt">Comment</label>
-            <textarea 
-              type="text" 
-              name="commentTxt" 
-              id="commentTxt" 
-              className="input-comment" 
-              ref="input2" 
-              value={commentTxt} 
-              onChange={this.handleChange} 
-              onKeyDown={this.handleKeydown} 
-              placeholder="What do you want to say?..." 
-            />
-          </div>
-          <div className="form-row">
-            <button className="btn-comment" ref="button">Submit a comment!</button>
-            <div className="msg-error">{errorMessage}</div>
-          </div>
-        </form>
-
-        <div className="display-comments">
-          {listComments}
-          {/* {comments.length ? <Link to={{ hash: "#top" }}>Return to top</Link> : false} */}
+        <div className="form-row">
+          <label htmlFor="commentTxt">Comment</label>
+          <textarea 
+            type="text"
+            name="commentTxt"
+            id="commentTxt"
+            className="input-comment"
+            ref={refCommentInput}
+            value={commentTxt}
+            onChange={handleChange}
+            onKeyDown={handleKeydown}
+            placeholder="What do you want to say?..."
+          />
         </div>
+        <div className="form-row">
+          <button className="btn-comment" ref={refBtnSubmit}>Submit a comment!</button>
+          <div className="msg-error">{errorMsg}</div>
+        </div>
+      </form>
 
+      <div className="display-comments">
+        {listComments}
+        {comments.length > 0 ? <button onClick={handleReturnToTop}>Return to top</button> : null}
       </div>
-    );
-  }
+
+    </div>
+  );
 }
+
+
+/* EXPORT */
+export default Videopage;

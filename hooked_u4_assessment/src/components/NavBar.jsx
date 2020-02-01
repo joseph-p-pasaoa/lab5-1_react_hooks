@@ -6,7 +6,7 @@ NavBar Component | YouTube Abbreviated | Unit 4 Assessment
 
 /* IMPORTS */
     // external
-    import React, { Component } from 'react';
+    import React, { useState, useEffect } from 'react';
     import { NavLink, Route } from 'react-router-dom';
 
     // local
@@ -17,72 +17,56 @@ NavBar Component | YouTube Abbreviated | Unit 4 Assessment
     import Logo from './Logo';
 
 
-/* COMPONENT & EXPORT */
-export default class NavBar extends Component {
-  state = {
-    nowPlayingTitle: ""
-  }
+/* COMPONENT */
+const NavBar = (props) => {
 
-  async componentDidMount() {
-    await this.getNowPlaying();
-  }
+  // USESTATES
+  const [ nowPlayingTitle, setNowPlayingTitle ] = useState("");
 
-  async componentDidUpdate(prevProps, prevState) {
-    const prevMatch = prevProps.match;
-    const currMatch = this.props.match;
-    if (prevMatch !== currMatch) {
-      await this.getNowPlaying();
-    }
-  }
-
-
-  getNowPlaying = async () => {
-    let title = "";
-    if (this.props.match) {
-      try {
-        const videoId = this.props.match.params.id;
-        const snippet = await getApiOneSnippet(videoId);
-        title = snippet.title;
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    this.setState({ nowPlayingTitle: title });
-  }
-
-
-  render () {
-    const { nowPlayingTitle } = this.state;
-
-
-    return(
-      <ul className="nav-bar">
-        <Logo />
-        <NavLink 
-          className="nav-link" 
-          exact to={{
-              pathname: "/",
-              state: {
-                searchTxt: "",
-                errorMessage: "",
-                results: [],
-                isBeginning: true
-              }
-          }} 
-        >Home</NavLink>
-        <NavLink className="nav-link" to={"/about"}>About</NavLink>
-        <Route path={"/video/*"} render={ () => {
-            return (
-              <li className="now-playing">
-                <div className="now-playing-label">
-                  Now Playing
-                </div>
-                {nowPlayingTitle}
-              </li>
-            );
+  // USEEFFECTS
+  useEffect(() => {
+      const getNowPlaying = async () => {
+        let title = "";
+        if (props.match) {
+          const videoId = props.match.params.id;
+          try {
+            const snippet = await getApiOneSnippet(videoId);
+            title = snippet.title;
+          } catch (err) {
+            console.log(err);
           }
-        } />
-      </ul>
-    );
-  }
+        }
+        setNowPlayingTitle(title);
+      }
+
+      getNowPlaying();
+  }, [props.match]);
+
+
+  // RETURN
+  return(
+    <ul className="nav-bar">
+      <Logo />
+      <NavLink 
+        className="nav-link"
+        to={"/home"}
+      >Home</NavLink>
+      <NavLink className="nav-link" to={"/about"}>About</NavLink>
+      <Route path={"/video/*"} render={ () => {
+          return (
+            <li className="now-playing">
+              <div className="now-playing-label">
+                Now Playing
+              </div>
+              {nowPlayingTitle}
+            </li>
+          );
+        }
+      } />
+    </ul>
+  );
 }
+
+
+/* EXPORT */
+export default NavBar;

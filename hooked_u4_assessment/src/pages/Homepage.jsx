@@ -6,7 +6,7 @@ Homepage Component | YouTube Abbreviated | Unit 4 Assessment
 
 /* IMPORTS */
     // external
-    import React, { Component } from 'react';
+    import React, { useState } from 'react';
 
     // local
     import './Homepage.css';
@@ -16,113 +16,109 @@ Homepage Component | YouTube Abbreviated | Unit 4 Assessment
     const { processInput } = require('../helpers/globalHelp.js');
 
 
-/* COMPONENT + EXPORT */
-export default class Homepage extends Component {
-  state = {
-    searchTxt: "",
-    errorMessage: "",
-    results: [],
-    isBeginning: true
+/* COMPONENT */
+const Homepage = (props) => {
+
+  // USESTATES
+  const [ searchTxt, setSearchTxt ] = useState("");
+  const [ errorMsg, setErrorMsg ] = useState("");
+  const [ results, setResults ] = useState([]);
+
+
+  // CREATE REFS
+  const refBtnSearch = React.createRef();
+  const refBtnClear = React.createRef();
+
+
+  // HANDLERS
+  const handleChange = (e) => {
+    setSearchTxt(e.target.value);
   }
 
-
-  componentDidUpdate (prevProps, prevState) {
-    if (this.props.location.state && !prevState.isBeginning) {
-      this.setState(this.props.location.state);
-    }
-  }
-
-
-  handleChange = (e) => {
-    this.setState({
-        [e.target.name]: e.target.value
-    });
-  }
-
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const { pass, payload } = processInput(this.state.searchTxt, "search terms");
+    const { pass, payload } = processInput(searchTxt, "search terms");
     if (!pass) {
-      this.setState({
-          errorMessage: payload
-      });
+      setErrorMsg(payload);
     } else {
-      this.refs.btnSearch.blur();
-      this.getSearchResults(payload);
+      refBtnSearch.current.blur();
+      getSearchResults(payload);
     }
   }
 
-  handleClear = (e) => {
+  const handleClear = (e) => {
     e.preventDefault();
-    this.refs.btnClear.blur();
-    this.setState({ searchTxt: "" });
+    refBtnClear.current.blur();
+    setSearchTxt("");
   }
 
 
-  getSearchResults = async (search) => {
+  // HELPERS
+  const getSearchResults = async (search) => {
     const results = await getApiSearch(search);
-    this.setState({
-        errorMessage: "",
-        results: results,
-        isBeginning: false
+    setErrorMsg("");
+    if (results.length === 0) {
+      results[0] = "no results found";
+    };
+    setResults(results);
+  }
+
+
+  //PRE-RETURN
+  let listResults = null;
+  if (results.length && results[0] !== "no results found") {
+    listResults = results.map((result, i) => {
+        const videoId = result.id.videoId;
+        const title = result.snippet.title;
+        const desc = result.snippet.description;
+        const thumbUrl = result.snippet.thumbnails.high.url; // width: 480px h: 360px
+
+        return (
+          <VideoCard
+            key={i}
+            videoId={videoId}
+            title={title}
+            desc={desc}
+            thumbUrl={thumbUrl}
+          />
+        );
     });
   }
 
-
-  render() {
-    const { searchTxt, errorMessage, results, isBeginning } = this.state;
-
-    let listResults = null;
-    if (results.length) {
-      listResults = results.map((result, i) => {
-          const videoId = result.id.videoId;
-          const title = result.snippet.title;
-          const desc = result.snippet.description;
-          const thumbUrl = result.snippet.thumbnails.high.url; // width: 480px h: 360px
-
-          return (
-            <VideoCard 
-              key={i} 
-              videoId={videoId} 
-              title={title} 
-              desc={desc} 
-              thumbUrl={thumbUrl} 
-            />
-          );
-      });
-    }
-
-    let showing = null;
-    if (isBeginning) {
-      showing = <p className="result-response">Search for videos above!</p>;
-    } else if (!results.length) {
-      showing = <p className="result-response">Sorry, no search results found. Try your search again above.</p>;
-    } else {
-      showing = listResults;
-    }
-
-    return(
-      <div className="stage">
-        <form onSubmit={this.handleSubmit} className="form-homesearch">
-          <input 
-            type="text" 
-            name="searchTxt" 
-            className="input-search" 
-            value={searchTxt} 
-            onChange={this.handleChange} 
-            placeholder="Search..." 
-          />
-          <button className="btn-search" ref="btnSearch">Search</button>
-          <button className="btn-clear" onClick={this.handleClear} ref="btnClear">Clear</button>
-        </form>
-
-        <div className="msg-error">{errorMessage}</div>
-
-        <div className="results-grid">
-          {showing}
-        </div>
-
-      </div>
-    );
+  let showing = null;
+  if (results[0] === "no results found") {
+    showing = <p className="result-response">Sorry, no search results found. Try your search again above.</p>;
+  } else if (results.length === 0) {
+    showing = <p className="result-response">Search for videos above!</p>;
+  } else {
+    showing = listResults;
   }
+
+  return(
+    <div className="stage">
+      <form onSubmit={handleSubmit} className="form-homesearch">
+        <input
+          type="text"
+          name="searchTxt"
+          className="input-search"
+          value={searchTxt}
+          onChange={handleChange}
+          placeholder="Search..."
+        />
+        <button className="btn-search" ref={refBtnSearch}>Search</button>
+        <button className="btn-clear" onClick={handleClear} ref={refBtnClear}>Clear</button>
+      </form>
+
+      <div className="msg-error">{errorMsg}</div>
+
+      <div className="results-grid">
+        {showing}
+      </div>
+
+    </div>
+  );
 }
+
+
+/* EXPORT */
+export default Homepage;
