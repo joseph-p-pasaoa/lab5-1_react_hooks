@@ -24,19 +24,6 @@ const NavBar = (props) => {
   const [ nowPlayingTitle, setNowPlayingTitle ] = useState("");
 
   // USEEFFECTS
-
-  // async componentDidMount() {
-  //   await this.getNowPlaying();
-  // }
-
-  // async componentDidUpdate(prevProps, prevState) {
-  //   const prevMatch = prevProps.match;
-  //   const currMatch = this.props.match;
-  //   if (prevMatch !== currMatch) {
-  //     await this.getNowPlaying();
-  //   }
-  // }
-
   useEffect(() => {
       const getNowPlaying = async () => {
         let title = "";
