@@ -27,28 +27,22 @@ const App = () => {
         { name: "Wynter", amount: 50, msg: "Bon voyage!" },
         { name: "Dessa", amount: 100, msg: "Bring me back something cool~" }
     ]);
-    const [ nameValue, setNameValue ] = useState("");
-    const [ amountValue, setAmountValue ] = useState(0);
-    const [ msgValue, setMsgValue ] = useState("");
+    const [ inputValue, setInputValue ] = useState({
+        nameValue: "",
+        amountValue: 0,
+        msgValue: ""
+    });
     const [ errorMsgOpacity, setErrorMsgOpacity ] = useState({ opacity: 0 });
 
 
   // HANDLERS
   const handleChange = (e) => {
-    switch (e.target.name) {
-      case "amountValue":
-        setAmountValue(Number(e.target.value));
-        break;
-      case "nameValue":
-        setNameValue(e.target.value);
-        break;
-      case "msgValue":
-        setMsgValue(e.target.value);
-        break;
-      default:
-        console.log("error: switch error on handleChange");
-        throw new Error("You're not supposed to be here.");
-    }
+    const { name, value } = e.target;
+    setInputValue(prevState => ({
+          ...prevState,
+          [name] : value
+      })
+    );
   }
 
   const handleSubmit = (e) => {
@@ -58,21 +52,26 @@ const App = () => {
     } else {
       const newDonation = {
         name: nameValue,
-        amount: amountValue,
+        amount: Number(amountValue),
         msg: msgValue
       }
       const updatedDonations = [ newDonation, ...donations ];
 
       setDonations(updatedDonations);
-      setNameValue("");
-      setAmountValue(0);
-      setMsgValue("");
+      setInputValue(prevState => ({
+            ...prevState,
+            nameValue: "",
+            amountValue: 0,
+            msgValue: ""
+        })
+      );
       setErrorMsgOpacity({ opacity: 0 });
     }
   }
 
 
   // PRE-RETURN
+  const { nameValue, amountValue, msgValue } = inputValue;
   const raised = donations.reduce((sum, curr) => sum += curr.amount, 0);
   const percentToTarget = (raised / target * 100).toFixed(2);
 
