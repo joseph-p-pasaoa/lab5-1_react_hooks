@@ -49,15 +49,7 @@ const NavBar = (props) => {
       <Logo />
       <NavLink 
         className="nav-link" 
-        exact to={{
-            pathname: "/",
-            state: {
-              searchTxt: "",
-              errorMessage: "",
-              results: [],
-              isBeginning: true
-            }
-        }} 
+        to={"/home"} 
       >Home</NavLink>
       <NavLink className="nav-link" to={"/about"}>About</NavLink>
       <Route path={"/video/*"} render={ () => {

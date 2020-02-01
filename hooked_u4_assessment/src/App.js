@@ -7,7 +7,7 @@ APP MAIN Component | YouTube Abbreviated | Unit 4 Assessment
 /* IMPORTS */
     // external
     import React from 'react';
-    import { Switch, Route } from 'react-router-dom';
+    import { Switch, Route, Redirect } from 'react-router-dom';
 
     // local
     import './reset.css';
@@ -26,6 +26,7 @@ const App = () => {
     <div className="App">
       <Route path={'/video/:id'} children={(props) => <NavBar {...props} />} />
       <Switch>
+        <Route path={'/home'}><Redirect to={"/"} /></Route>
         <Route path={'/video/:id'} component={Videopage} />
         <Route path={'/about'} component={Aboutpage} />
         <Route path={'/'} component={Homepage} />
