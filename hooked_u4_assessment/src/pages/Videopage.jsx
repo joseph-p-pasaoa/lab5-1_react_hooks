@@ -103,7 +103,6 @@ const Videopage = (props) => {
           block: 'end',
           inline: 'center',
       });
-    // refStageTop.current.scrollTop = 0;
   }
 
 
